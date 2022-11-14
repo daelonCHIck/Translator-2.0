@@ -1,0 +1,122 @@
+﻿@page "/FAQ"
+
+<PageTitle>FAQ</PageTitle>
+
+
+
+
+<MudMainContent>
+    <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
+@*Поля со ссылками*@
+<MudGrid Justify="Justify.Center">
+    <MudItem>
+        <MudPaper Height="500px" Width="275px" Style="background:#F6F6F6;">
+            <MudText Typo="Typo.h5" Align="Align.Center"><b></b>Учетная запись </MudText>
+            <br/>
+            @foreach (var element in arr)
+            
+            {
+
+                   
+                    <MudGrid Justify="Justify.Center">
+
+                            <MudLink Href="@element.link" Class="pa-4 mr-16" >@element.name</MudLink>
+
+                    </MudGrid> 
+                
+                
+            }
+        </MudPaper>
+    </MudItem>
+
+    <MudItem>
+        <MudPaper Height="500px" Width="275px" Style="background:#F6F6F6;">
+            <MudText Typo="Typo.h5" Align="Align.Center"><b></b>Функции </MudText>
+            <br />
+            @foreach (var element in array)
+            {
+                
+             <MudGrid Justify="Justify.Center">
+
+                        <MudLink Href="@element.Link" Class="pa-4 mr-16">@element.Name</MudLink>
+
+             </MudGrid>
+
+            }
+         
+        </MudPaper>
+
+    </MudItem>
+</MudGrid>
+
+
+@*Нижние кнопки*@
+<MudGrid Justify="Justify.Center">
+
+    <MudItem>
+        <MudButton Href="/">Переводчик</MudButton>
+    </MudItem>
+
+    <MudItem>
+        <MudButton>Вакансии</MudButton>
+    </MudItem>
+
+    <MudItem>
+
+        <MudButton>Пользовательское соглашение</MudButton>
+    </MudItem>
+
+    <MudItem>
+        <MudButton>Чат с поддержкой</MudButton>
+    </MudItem>
+</MudGrid>
+</MudContainer>
+</MudMainContent>
+
+
+
+
+
+@code {
+    class Links
+    {
+        public string name { get; set; }
+        public string link { get; set; }
+
+    }
+
+    @code {
+        class SecondLinks
+        {
+            public string Name { get; set; }
+            public string Link { get; set; }
+        }
+    }
+}
+
+
+@code {
+    Links[] arr = new Links[] 
+            { 
+                new Links { name = "Данные учетной записи", link = "/AD" }, 
+                new Links { name = "Команда", link = "/Team" } 
+            };
+}
+
+
+
+@code {
+    SecondLinks[] array = new SecondLinks[] { 
+        new SecondLinks 
+        { 
+            Name = "Настольное приложение", Link = "/DescA" }, 
+            new SecondLinks { Name = "Мобильное приложение", Link = "/MobA" }, 
+            new SecondLinks { Name = "API и плагины", Link = "/API" }, 
+            new SecondLinks { Name = "Сохранённые переводы", Link = "/Saved" }, 
+            new SecondLinks { Name = "Перевод в приложениях", Link = "/TIA" } 
+        };
+
+}
+
+
+

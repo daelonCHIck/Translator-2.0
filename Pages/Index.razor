@@ -1,0 +1,222 @@
+﻿@page "/"
+@using LibreTranslate.Net
+
+
+<PageTitle>Переводчик</PageTitle>
+
+
+<style>
+
+    .Button {
+
+        margin
+
+    }
+
+</style>
+
+
+@*Верхняя панель*@
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudSpacer />
+        <MudIconButton Icon="@Icons.Filled.AccountCircle" Color="Color.Inherit" Href="/Account" Target="_blank" />
+    </MudAppBar>
+</MudLayout>
+
+
+@*Переводчик*@
+<MudMainContent>
+    <MudContainer MaxWidth="MaxWidth.Large" Class="my-16 pt-16">
+
+        <MudGrid Justify="Justify.Center">
+
+            <MudGrid Justify="Justify.Center">
+                @*Верхние кнопки*@
+                <MudItem>
+                    <MudButton>Переводчик</MudButton>
+                </MudItem>
+
+                <MudItem>
+                    <MudButton>Текст</MudButton>
+                </MudItem>
+
+                <MudItem>
+
+                    <MudButton>Фото</MudButton>
+                </MudItem>
+
+                <MudItem>
+                    <MudButton>Сайты</MudButton>
+                </MudItem>
+
+                <MudItem>
+                    <MudButton>Документы</MudButton>
+                </MudItem>
+            </MudGrid>
+
+
+            @*Поля для текста*@
+            <MudGrid Justify="Justify.Center">
+                
+
+               
+                <MudItem>
+                    @*Ввод текста*@
+                    <MudPaper Height="140px" Width="280px" Style="background:#F6F6F6;" />
+
+                    <MudTextField @bind-Value="translate" Label="Ваш текст" Variant="Variant.Text"></MudTextField>
+
+                    <MudExpansionPanels>   @*Выбор языка*@
+                        <MudExpansionPanel Text="Язык" MaxHeight="150">
+
+                            <p>
+                                <MudButton>
+                                    <p>Русский</p>
+                                </MudButton>
+                            </p>
+
+                            <p>
+                                <MudButton>
+                                    <p>Английский</p>
+                                </MudButton>
+                            </p>
+
+                            <p>
+                                <MudButton>
+                                    <p>Испанский</p>
+                                </MudButton>
+                            </p>
+
+                        </MudExpansionPanel>
+                    </MudExpansionPanels>
+
+                   
+                </MudItem>
+
+
+                
+                <MudItem>  @*Кнопка "Перевести"*@
+                        <MudButton Variant="Variant.Text" OnClick="Translation" Class="Button">Перевести</MudButton>
+                </MudItem>
+
+
+                <MudItem>  @*Вывод текста*@
+                    <MudPaper Height="140px" Width="280px" Style="background:#F6F6F6;" />
+
+                     <MudExpansionPanels>  @*Выбор языка*@
+                        <MudExpansionPanel Text="Язык" MaxHeight="150">
+
+                            <p>
+                                <MudButton>
+                                    <p>Русский</p>
+                                </MudButton>
+                            </p>
+
+                            <p>
+                                <MudButton>
+                                    <p>Английский</p>
+                                </MudButton>
+                            </p>
+
+                            <p>
+                                <MudButton>
+                                    <p>Испанский</p>
+                                </MudButton>
+                            </p>
+
+                        </MudExpansionPanel>
+                    </MudExpansionPanels>
+                        
+                     <MudTextField @bind-Value="translated" Label="Перевод" Variant="Variant.Text"></MudTextField>
+                    
+                </MudItem>
+            </MudGrid>
+
+
+            @*Последние переводы*@
+            <MudGrid Justify="Justify.Center">
+
+                <MudItem>
+                    Недавние переводы:
+                    <MudPaper Height="70px" Width="165px" />
+                </MudItem>
+
+                <MudItem Justify="Justify.Center">
+                    <MudIcon Icon="@Icons.Material.Filled.AvTimer" Title="Favorite" />
+                </MudItem>
+            </MudGrid>
+
+          
+
+            
+
+            @*Нижние кнопки*@
+            <MudGrid Justify="Justify.Center">
+
+                <MudItem>
+                    <MudButton Href="FAQ">FAQ</MudButton>
+                </MudItem>
+
+                <MudItem>
+                    <MudButton>Вакансии</MudButton>
+                </MudItem>
+
+                <MudItem>
+
+                    <MudButton>Пользовательское соглашение</MudButton>
+                </MudItem>
+
+                <MudItem>
+                    <MudButton>Чат с поддержкой</MudButton>
+                </MudItem>
+            </MudGrid>
+
+        </MudGrid>
+    </MudContainer>
+</MudMainContent>
+
+
+
+
+
+
+@code {
+    
+    string translated { get; set; } = "";
+    string translate { get; set; } = "";
+    protected override async Task OnInitializedAsync()
+    {
+        //var tranlate = new LibreTranslate("https://translate.argosopentech.com/");
+        //System.Collections.Generic.IEnumerable<SupportedLanguages> supLang = await tranlate.GetSupportedLanguagesAsync();
+        //System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(supLang, Newtonsoft.Json.Formatting.Indented));
+        //var text = "Привет ребят с вами Ивангай!";
+        //string spanishText = await tranlate.TranslateAsync(new Translate()
+        //    {
+        //        ApiKey = "MySecretApiKey",
+        //        Source = LanguageCode.Russian,
+        //        Target = LanguageCode.Spanish,
+        //        Text = text
+        //    });
+            
+        //translated = spanishText;
+    }
+
+    private async Task Translation (){
+
+        var tranlate = new LibreTranslate("https://translate.argosopentech.com/");
+        System.Collections.Generic.IEnumerable<SupportedLanguages> supLang = await tranlate.GetSupportedLanguagesAsync();
+        System.Console.WriteLine(Newtonsoft.Json.JsonConvert.SerializeObject(supLang, Newtonsoft.Json.Formatting.Indented));
+        var text = "Привет ребят с вами Ивангай!";
+        string spanishText = await tranlate.TranslateAsync(new Translate()
+            {
+                ApiKey = "MySecretApiKey",
+                Source = LanguageCode.Russian,
+                Target = LanguageCode.Spanish,
+                Text = translate
+            });
+
+        translated = spanishText;
+
+    }
+}
